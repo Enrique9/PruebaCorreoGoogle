@@ -20,13 +20,13 @@ namespace PruebaCorreoGoogle
         static string password = ConfigurationManager.AppSettings["pass"].ToString();
         static bool ssl = Convert.ToBoolean(ConfigurationManager.AppSettings["autentificacionssl"].ToString());
 
-
+        public static string Password { get => password; set => password = value; }
 
         static void Main(string[] args)
         {
             try
             {
-                Marzam.Utiles.Comunicaciones.Email email = new Email(correode, "", true, System.Net.Mail.DeliveryNotificationOptions.OnSuccess, System.Net.Mail.MailPriority.High, servidorcorreo, puerto, usuario, password, ssl);
+                Email email = new Email(correode, "", true, System.Net.Mail.DeliveryNotificationOptions.OnSuccess, System.Net.Mail.MailPriority.High, servidorcorreo, puerto, usuario, Password, ssl);
                 email.Enviar(correodestino, "", "INVITO COCAS", "INVITO COCAS");
                 
                 
